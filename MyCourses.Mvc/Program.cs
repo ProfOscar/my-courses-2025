@@ -7,15 +7,10 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
-Course testCourse = new Course(1, 
-    "Test Course", 
-    "Test di funzionamento dei riferimenti incrociati tra progetti",
-    "");
-
-// app.MapGet("/", () => "Corso di test: " + testCourse);
+// app.MapGet("/", () => "Hello World!");
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller}/{action}"
+    pattern: "{controller=Home}/{action=Index}/{id?}"
 );
 
 app.Run();
