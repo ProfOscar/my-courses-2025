@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MyCourses.Models;
+using MyCourses.Models.Services;
 
 namespace MyCourses.Mvc.Controllers
 {
@@ -7,8 +8,9 @@ namespace MyCourses.Mvc.Controllers
     {
         public IActionResult Index()
         {
-            // return Content("Sono Index di Courses");
-            return View();
+            CourseService courseService = new CourseService();
+            List<Course> courses = courseService.GetCourses();
+            return View(courses);
         }
 
         public IActionResult Details(string id) {
