@@ -29,5 +29,34 @@ namespace MyCourses.Models.Services
             }
             return courseList;
         }
+
+        public CourseDetailViewModel GetCourse(int id)
+        {
+            var rnd = new Random();
+            var price = Convert.ToDecimal(rnd.NextDouble() * 10 + 10);
+            var fullPrice = rnd.NextDouble() > 0.5 ? price : price + 1;
+            var course = new CourseDetailViewModel
+            {
+                Id = id,
+                Title = $"Corso {id}",
+                Description = $"Description {id}",
+                ImagePath = "/logo.svg",
+                Author = "Nome Cognome",
+                Rating = rnd.Next(10, 51) / 10.0,
+                FullPrice = new Money(Currency.EUR, fullPrice),
+                CurrentPrice = new Money(Currency.EUR, price),
+                Lessons = new List<LessonViewModel>()
+            };
+            for (int i = 0; i < 5; i++)
+            {
+                var lesson = new LessonViewModel
+                {
+                    Title = $"Lesson {i}",
+                    Duration = TimeSpan.FromSeconds(rnd.Next(40, 90))
+                };
+                course.Lessons.Add(lesson);
+            }
+            return course;
+        }
     }
 }
