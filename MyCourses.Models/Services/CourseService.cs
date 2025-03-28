@@ -1,4 +1,5 @@
-﻿using MyCourses.Models.ViewModels;
+﻿using MyCourses.Models.Enums;
+using MyCourses.Models.ViewModels;
 
 namespace MyCourses.Models.Services
 {
@@ -13,6 +14,7 @@ namespace MyCourses.Models.Services
             for (int i = 1; i <= 20; i++)
             {
                 var price = Convert.ToDecimal(rnd.NextDouble() * 10 + 10);
+                var fullPrice = rnd.NextDouble() > 0.5 ? price : price + 1;
                 var course = new CourseViewModel
                 {
                     Id = i,
@@ -20,8 +22,8 @@ namespace MyCourses.Models.Services
                     ImagePath = "/logo.svg",
                     Author = "Nome Cognome",
                     Rating = rnd.Next(10, 51) / 10.0, // importante il .0 per fare una divisione con la virgola
-                    FullPrice = rnd.NextDouble() > 0.5 ? price : price + 1,
-                    CurrentPrice = price
+                    FullPrice = new Money(Currency.EUR, fullPrice),
+                    CurrentPrice = new Money(Currency.EUR, price)
                 };
                 courseList.Add(course);
             }
