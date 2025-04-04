@@ -7,17 +7,22 @@ namespace MyCourses.Mvc.Controllers
 {
     public class CoursesController : Controller
     {
+        private ICourseService _courseService;
+
+        public CoursesController(ICourseService courseService)
+        {
+                _courseService = courseService;
+        }
+
         public IActionResult Index()
         {
-            CourseService courseService = new CourseService();
-            List<CourseViewModel> courses = courseService.GetCourses();
+            List<CourseViewModel> courses = _courseService.GetCourses();
             ViewBag.Title = "MyCourses - Catalogo";
             return View(courses);
         }
 
         public IActionResult Details(int id) {
-            CourseService courseService = new CourseService();
-            CourseDetailViewModel details = courseService.GetCourse(id);
+            CourseDetailViewModel details = _courseService.GetCourse(id);
             ViewBag.Title = $"MyCourses - {details.Title}";
             return View(details);
         }

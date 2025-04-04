@@ -3,7 +3,7 @@ using MyCourses.Models.ViewModels;
 
 namespace MyCourses.Models.Services
 {
-    public class CourseService
+    public class CourseService : ICourseService
     {
         public List<CourseViewModel> GetCourses()
         {
