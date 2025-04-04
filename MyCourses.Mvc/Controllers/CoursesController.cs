@@ -14,16 +14,10 @@ namespace MyCourses.Mvc.Controllers
             return View(courses);
         }
 
-        public IActionResult Details(string id) {
-            int myId;
-            if (!int.TryParse(id, out myId))
-            {
-                myId = -1;
-            }
-            Course testCourse = new Course(myId, $"Test Course {myId}",
-                $"Descrizione del corso {myId}", "");
-            // return Content($"Sono Details di questo corso\n{testCourse}");
-            return View();
+        public IActionResult Details(int id) {
+            CourseService courseService = new CourseService();
+            CourseDetailViewModel details = courseService.GetCourse(id);
+            return View(details);
         }
     }
 }
