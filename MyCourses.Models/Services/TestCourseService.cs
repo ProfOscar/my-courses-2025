@@ -3,7 +3,10 @@ using MyCourses.Models.ViewModels;
 
 namespace MyCourses.Models.Services
 {
-    public class CourseService : ICourseService
+    /// <summary>
+    /// Servizio di test con dati creati in modo pseudocasuale.
+    /// </summary>
+    public class TestCourseService : ICourseService
     {
         public List<CourseViewModel> GetCourses()
         {
