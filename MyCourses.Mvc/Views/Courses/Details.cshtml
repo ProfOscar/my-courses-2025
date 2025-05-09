@@ -41,7 +41,7 @@
                         <s>@Model.FullPrice</s>
                     }
                 </div>
-                <img src="~/logo.svg" alt="Titolo del corso" class="img-fluid course-image">
+                <img src="@Model.ImagePath" alt="@Model.Title" class="img-fluid course-image">
             </aside>
         </div>
     </div>
@@ -67,7 +67,15 @@
             Totale
         </div>
         <div class="col-md-3 d-flex align-items-center">
-            <i class="far fa-clock"></i><time>@Model.TotalCourseDuration.ToString("m'm 's's'")</time>
+            <i class="far fa-clock"></i>
+            @if (Model.TotalCourseDuration.CompareTo(TimeSpan.FromHours(1)) > 0)
+            {
+                <time>@Model.TotalCourseDuration.ToString("h'h 'm'm 's's'")</time>
+            }
+            else
+            {
+                <time>@Model.TotalCourseDuration.ToString("m'm 's's'")</time>
+            }
         </div>
     </div>
 </section>

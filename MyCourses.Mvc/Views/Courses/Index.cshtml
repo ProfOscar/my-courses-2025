@@ -3,13 +3,13 @@
     Layout = "_Layout";
 } *@
 
-<h1>Catalogo dei corsi</h1>
+<h1 class="ml-2">Catalogo dei corsi</h1>
 
 @foreach (CourseViewModel course in Model)
 {
     <hr />
     <div class="row course">
-        <div class="col-md-1">
+        <div class="col-md-1 text-center">
             <img src="@course.ImagePath" alt="MyCourses" width="50">
         </div>
         <div class="col-md-5">
