@@ -8,7 +8,7 @@ namespace MyCourses.Models.Services
     /// </summary>
     public class TestCourseService : ICourseService
     {
-        public List<CourseViewModel> GetCourses()
+        public List<CourseViewModel> GetCourses(string search = "")
         {
             // dovrà leggere i dati dal DB e restituire la lista dei corsi
             // provvisoriamente creiamo dati casuali di test in memoria

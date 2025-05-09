@@ -3,7 +3,23 @@
     Layout = "_Layout";
 } *@
 
-<h1 class="ml-2">Catalogo dei corsi</h1>
+
+
+<div class="row">
+    <div class="col-md-8">
+        <h1>Catalogo dei corsi</h1>
+    </div>
+    <div class="col-md-4 d-flex align-items-center">
+        <form style="margin-bottom:0">
+            <div class="input-group">
+                <input type="text" name="search" class="form-control" placeholder="Cerca..." aria-label="Cerca..." aria-describedby="search-button" />
+                <div class="input-group-append">
+                    <button class="input-group-text" id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 @foreach (CourseViewModel course in Model)
 {
@@ -42,7 +58,7 @@
             }
         </div>
         <div class="col-md-2 d-flex align-items-center">
-            <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@course.Id">Dettagli del corso @course.Id</a>
+            <a class="btn btn-outline-primary" asp-action="Details" asp-route-id="@course.Id">Dettagli corso @course.Id</a>
         </div>
     </div>
 }

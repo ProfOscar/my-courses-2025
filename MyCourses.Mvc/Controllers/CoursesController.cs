@@ -14,9 +14,9 @@ namespace MyCourses.Mvc.Controllers
                 _courseService = courseService;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search = "")
         {
-            List<CourseViewModel> courses = _courseService.GetCourses();
+            List<CourseViewModel> courses = _courseService.GetCourses(search);
             ViewBag.Title = "MyCourses - Catalogo";
             return View(courses);
         }

@@ -14,12 +14,12 @@ namespace MyCourses.Models.Services
             _connStr = config.GetConnectionString("DefaultConnection")!;
         }
 
-        public List<CourseViewModel> GetCourses()
+        public List<CourseViewModel> GetCourses(string search = "")
         {
             var courseList = new List<CourseViewModel>();
             using var conn = new SqlConnection(_connStr);
             conn.Open();
-            string sql = "SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Currency, FullPrice_Amount, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses";
+            string sql = $"SELECT Id, Title, ImagePath, Author, Rating, FullPrice_Currency, FullPrice_Amount, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses WHERE title LIKE '{"%"+search+"%"}'";
             using var cmd = new SqlCommand(sql, conn);
             using var reader = cmd.ExecuteReader();
             while (reader.Read())

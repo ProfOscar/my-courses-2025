@@ -4,7 +4,7 @@ namespace MyCourses.Models.Services
 {
     public interface ICourseService
     {
-        List<CourseViewModel> GetCourses();
+        List<CourseViewModel> GetCourses(string search);
         CourseDetailViewModel GetCourse(int id);
     }
 }
