@@ -61,5 +61,15 @@ namespace MyCourses.Models.Services
             }
             return course;
         }
+
+        public List<CourseViewModel> GetBestCourses()
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<CourseViewModel> GetMostRecentCourses()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

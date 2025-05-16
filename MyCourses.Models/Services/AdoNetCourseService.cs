@@ -88,5 +88,67 @@ namespace MyCourses.Models.Services
             }
             throw new InvalidOperationException($"La query dovrebbe restituire i dati del corso {id}");
         }
+
+        public List<CourseViewModel> GetBestCourses()
+        {
+            var courseList = new List<CourseViewModel>();
+            using var conn = new SqlConnection(_connStr);
+            conn.Open();
+            string sql = $"SELECT TOP 5 Id, Title, ImagePath, Author, Rating, FullPrice_Currency, FullPrice_Amount, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses ORDER BY Rating DESC;";
+            using var cmd = new SqlCommand(sql, conn);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                CourseViewModel course = new CourseViewModel()
+                {
+                    Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    ImagePath = reader.GetString(2),
+                    Author = reader.GetString(3),
+                    Rating = reader.GetFloat(4),
+                    FullPrice = new Money(
+                        Enum.Parse<Currency>(reader.GetString(5)),
+                        reader.GetDecimal(6)
+                    ),
+                    CurrentPrice = new Money(
+                        Enum.Parse<Currency>(reader.GetString(7)),
+                        reader.GetDecimal(8)
+                    )
+                };
+                courseList.Add(course);
+            }
+            return courseList;
+        }
+
+        public List<CourseViewModel> GetMostRecentCourses()
+        {
+            var courseList = new List<CourseViewModel>();
+            using var conn = new SqlConnection(_connStr);
+            conn.Open();
+            string sql = $"SELECT TOP 3 Id, Title, ImagePath, Author, Rating, FullPrice_Currency, FullPrice_Amount, CurrentPrice_Currency, CurrentPrice_Amount FROM Courses ORDER BY Id DESC;";
+            using var cmd = new SqlCommand(sql, conn);
+            using var reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                CourseViewModel course = new CourseViewModel()
+                {
+                    Id = reader.GetInt32(0),
+                    Title = reader.GetString(1),
+                    ImagePath = reader.GetString(2),
+                    Author = reader.GetString(3),
+                    Rating = reader.GetFloat(4),
+                    FullPrice = new Money(
+                        Enum.Parse<Currency>(reader.GetString(5)),
+                        reader.GetDecimal(6)
+                    ),
+                    CurrentPrice = new Money(
+                        Enum.Parse<Currency>(reader.GetString(7)),
+                        reader.GetDecimal(8)
+                    )
+                };
+                courseList.Add(course);
+            }
+            return courseList;
+        }
     }
 }

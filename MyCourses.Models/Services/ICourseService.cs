@@ -6,5 +6,7 @@ namespace MyCourses.Models.Services
     {
         List<CourseViewModel> GetCourses(string search);
         CourseDetailViewModel GetCourse(int id);
+        List<CourseViewModel> GetBestCourses();
+        List<CourseViewModel> GetMostRecentCourses();
     }
 }

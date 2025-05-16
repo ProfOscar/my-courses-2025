@@ -74,3 +74,17 @@ h2 {
 .course-lessons .course-duration {
     font-weight: bold;
 }
+
+section+section {
+    margin-top: 2em;
+}
+
+.jumbotron {
+    background-image: url('hero.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.jumbotron h1 {
+    font-size: 3.5em;
+}
